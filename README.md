@@ -46,6 +46,8 @@ grandmother-memorial/
 2. Open `index.html` in your web browser
 3. Navigate through the stories
 
+**Important**: Keep all image files (*.jpg) in the same directory as the HTML files. The website uses relative paths to load images.
+
 No build process or dependencies required - pure HTML/CSS with embedded styles.
 
 ## Deployment Options
