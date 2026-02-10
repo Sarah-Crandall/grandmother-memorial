@@ -251,6 +251,138 @@
             .resources-section {
                 padding: 35px 25px;
             }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #travel-map {
+                height: 400px;
+            }
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 45px 40px;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.08);
+            margin-bottom: 50px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border: 3px solid rgba(139, 115, 85, 0.3);
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.02);
+            box-shadow: 4px 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .photo-caption {
+            font-size: 0.9em;
+            color: var(--sepia);
+            margin-top: 12px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .photo-credit {
+            font-size: 0.85em;
+            color: var(--faded-blue);
+            font-style: italic;
+        }
+
+        /* Map Section */
+        .map-section {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 45px 40px;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.08);
+            margin-bottom: 50px;
+        }
+
+        #travel-map {
+            width: 100%;
+            height: 500px;
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            margin-top: 20px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        .map-legend {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            margin-top: 20px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.6);
+            border: 1px solid rgba(139, 115, 85, 0.2);
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.95em;
+            color: var(--deep-brown);
+        }
+
+        .legend-color {
+            width: 30px;
+            height: 4px;
+            border-radius: 2px;
+        }
+
+        /* Fact Boxes */
+        .fact-box {
+            background: rgba(232, 223, 200, 0.4);
+            padding: 20px 25px;
+            border-left: 4px solid var(--soft-red);
+            margin-bottom: 20px;
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: var(--deep-brown);
+            font-style: italic;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .letter-container {
+                padding: 40px 30px;
+            }
+
+            .question {
+                font-size: 1.6em;
+            }
+
+            .letter-text {
+                font-size: 1.05em;
+                text-align: left;
+            }
+
+            .resources-section {
+                padding: 35px 25px;
+            }
         }
     </style>
 </head>
@@ -273,6 +405,64 @@
             <div class="signature">With love always...</div>
         </div>
 
+        <!-- Vintage Photos Section -->
+        <div class="photo-gallery">
+            <h2 class="resources-title">The 1939 World's Fair She Saw</h2>
+            <p style="text-align: center; color: var(--sepia); margin-bottom: 35px; font-style: italic;">
+                Vintage photographs from the fair your grandmother visited
+            </p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="world-fair-1939-1.jpg" alt="1939 World's Fair Administration Building">
+                    <p class="photo-caption">Administration Building for the 1939-1940 New York World's Fair<br>
+                    <span class="photo-credit">Margaret Bourke-White / The LIFE Picture Collection / Shutterstock</span></p>
+                </div>
+                <div class="gallery-item">
+                    <img src="world-fair-1939-2.jpg" alt="Construction workers preparing for 1939 World's Fair">
+                    <p class="photo-caption">Craftsmen work on a huge diorama prior to the opening of the 1939 Worlds Fair<br>
+                    <span class="photo-credit">Margaret Bourke-White / The LIFE Picture Collection / Shutterstock</span></p>
+                </div>
+                <div class="gallery-item">
+                    <img src="world-fair-1939-3.jpg" alt="Preparing for the 1939 World's Fair">
+                    <p class="photo-caption">Preparing for the 1939 World's Fair, New York<br>
+                    <span class="photo-credit">Alfred Eisenstaedt / The LIFE Picture Collection / Shutterstock</span></p>
+                </div>
+                <div class="gallery-item">
+                    <img src="world-fair-1939-5.jpg" alt="1939 New York World's Fair crowds">
+                    <p class="photo-caption">Crowds at the 1939 New York World's Fair<br>
+                    <span class="photo-credit">NYC Municipal Archives</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Travel Map -->
+        <div class="map-section">
+            <h2 class="resources-title">Her Childhood Travels</h2>
+            <p style="text-align: center; color: var(--sepia); margin-bottom: 25px; font-style: italic;">
+                The routes and destinations from her favorite family vacations
+            </p>
+            <div id="travel-map"></div>
+            <div class="map-legend">
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #8b7355;"></span>
+                    <span>Annual Salem to Louisville Trip</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #a8554e;"></span>
+                    <span>Virginia Beach Vacation</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #9caab5;"></span>
+                    <span>1939 Canada & World's Fair Trip</span>
+                </div>
+                <div class="legend-item">
+                    <span class="legend-color" style="background: #4a3f35;"></span>
+                    <span>Edgewater Beach Hotel, Chicago</span>
+                </div>
+            </div>
+        </div>
+
         <div class="resources-section">
             <h2 class="resources-title">Exploring Her Memories</h2>
             <p style="text-align: center; color: var(--sepia); margin-bottom: 35px; font-style: italic;">
@@ -281,11 +471,10 @@
 
             <div class="resource-category">
                 <h3 class="category-title">The 1939 New York World's Fair</h3>
+                <div class="fact-box">
+                    The fair opened on April 30, 1939, coinciding with the 150th anniversary of George Washington's first inauguration. Themed "Building the World of Tomorrow," it featured the iconic 700-foot Trylon obelisk and 200-foot Perisphere sphere. Nearly 45 million people visited over two seasons to see exhibitions from 62 nations and innovations like television, nylon stockings, and color film.
+                </div>
                 <ul class="resource-list">
-                    <li class="resource-item">
-                        <a href="https://en.wikipedia.org/wiki/1939_New_York_World's_Fair" target="_blank" class="resource-link">Wikipedia: 1939 New York World's Fair</a>
-                        <div class="resource-description">Comprehensive history of the "World of Tomorrow" - 45 million visitors came to see the Trylon and Perisphere</div>
-                    </li>
                     <li class="resource-item">
                         <a href="https://www.life.com/history/1939-new-york-worlds-fair-photos/" target="_blank" class="resource-link">LIFE Magazine: 1939 World's Fair in Photos</a>
                         <div class="resource-description">Vintage photographs from Margaret Bourke-White and Alfred Eisenstaedt showing the fair's construction and exhibits</div>
@@ -305,11 +494,10 @@
 
             <div class="resource-category">
                 <h3 class="category-title">Edgewater Beach Hotel, Chicago</h3>
+                <div class="fact-box">
+                    The Edgewater Beach Hotel opened in 1916 as a unique urban resort with its own 1,200-foot private beach on Lake Michigan. Painted "sunrise yellow" and designed by Benjamin Marshall in Spanish Revival style, it featured an Olympic-size pool, gardens, and even its own radio station. Celebrities like Babe Ruth, Marilyn Monroe, and Frank Sinatra stayed there. The hotel's heyday lasted from the 1920s through the 1940s until Lake Shore Drive was extended in the 1950s, separating it from its beach. It was demolished in 1971.
+                </div>
                 <ul class="resource-list">
-                    <li class="resource-item">
-                        <a href="https://en.wikipedia.org/wiki/Edgewater_Beach_Hotel" target="_blank" class="resource-link">Wikipedia: Edgewater Beach Hotel</a>
-                        <div class="resource-description">The "sunrise yellow" resort on Lake Michigan (1916-1971) that hosted celebrities and presidents</div>
-                    </li>
                     <li class="resource-item">
                         <a href="https://www.wttw.com/timemachine/edgewater-beach-hotel" target="_blank" class="resource-link">WTTW Chicago: Edgewater Beach Hotel History</a>
                         <div class="resource-description">Photos and stories of the hotel's golden era from the 1920s-1940s, including famous guests like Babe Ruth and Marilyn Monroe</div>
@@ -329,6 +517,9 @@
 
             <div class="resource-category">
                 <h3 class="category-title">Colonial Williamsburg Restoration</h3>
+                <div class="fact-box">
+                    When your grandmother visited in the 1940s, Colonial Williamsburg was indeed "just beginning restoration." Reverend W.A.R. Goodwin approached John D. Rockefeller Jr. in 1926, who then secretly purchased properties throughout the town. The restoration was publicly announced in 1928 and construction began transforming the former colonial capital. President Franklin D. Roosevelt visited in 1934 to dedicate Duke of Gloucester Street, proclaiming it "the most historic avenue in America." By the 1940s, major buildings like the Capitol and Governor's Palace had been reconstructed on their original foundations.
+                </div>
                 <ul class="resource-list">
                     <li class="resource-item">
                         <a href="https://www.colonialwilliamsburg.org/" target="_blank" class="resource-link">Colonial Williamsburg Official Site</a>
@@ -349,6 +540,9 @@
 
             <div class="resource-category">
                 <h3 class="category-title">The Cavalier Hotel, Virginia Beach</h3>
+                <div class="fact-box">
+                    Built in 1927 during the Roaring Twenties, the Cavalier Hotel was Virginia's "Grand Dame of the Shore." Its architecture was inspired by Thomas Jefferson's Monticello, with ornate plaster columns and expansive lawns. The hotel featured luxuries unheard of at the time: every room had a private bathroom, and an indoor pool was filled with fresh ocean water. In 1942, it was commandeered by the U.S. Navy as a radar training center during World War II, exactly when your grandmother would have visited. After the war, it returned to civilian use but never fully recovered its pre-war glamour until a major restoration in 2018.
+                </div>
                 <ul class="resource-list">
                     <li class="resource-item">
                         <a href="https://www.cavalierresortvb.com/the-historic-cavalier-hotel" target="_blank" class="resource-link">The Historic Cavalier Hotel Today</a>
@@ -374,5 +568,109 @@
             <a href="index.html" class="back-link">← Back to all stories</a>
         </div>
     </div>
+    <!-- Leaflet.js for the map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // Initialize the map
+        const map = L.map('travel-map').setView([40.5, -85], 5);
+        
+        // Add tile layer
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+            maxZoom: 19
+        }).addTo(map);
+
+        // Define locations
+        const locations = {
+            salem: [40.9007, -80.8567],
+            louisville: [38.2527, -85.7585],
+            virginiaBeach: [36.8529, -75.9780],
+            williamsburg: [37.2707, -76.7075],
+            washington: [38.9072, -77.0369],
+            chicago: [41.9742, -87.6589],
+            toronto: [43.6532, -79.3832],
+            quebec: [46.8139, -71.2080],
+            stAnne: [46.9942, -70.9630],
+            boston: [42.3601, -71.0589],
+            worldsFair: [40.7484, -73.8458]
+        };
+
+        // Custom marker icons
+        const createIcon = (color) => L.divIcon({
+            className: 'custom-marker',
+            html: `<div style="background-color: ${color}; width: 12px; height: 12px; border-radius: 50%; border: 2px solid white; box-shadow: 0 0 4px rgba(0,0,0,0.3);"></div>`,
+            iconSize: [12, 12],
+            iconAnchor: [6, 6]
+        });
+
+        // Add markers
+        L.marker(locations.salem, {icon: createIcon('#8b7355')}).addTo(map)
+            .bindPopup('<b>Salem, Ohio</b><br>Her hometown');
+        L.marker(locations.louisville, {icon: createIcon('#8b7355')}).addTo(map)
+            .bindPopup('<b>Louisville, Kentucky</b><br>Parents\' hometown');
+        L.marker(locations.virginiaBeach, {icon: createIcon('#a8554e')}).addTo(map)
+            .bindPopup('<b>Virginia Beach</b><br>Cavalier Hotel vacation');
+        L.marker(locations.williamsburg, {icon: createIcon('#a8554e')}).addTo(map)
+            .bindPopup('<b>Williamsburg</b><br>"Just beginning restoration"');
+        L.marker(locations.washington, {icon: createIcon('#a8554e')}).addTo(map)
+            .bindPopup('<b>Washington, D.C.</b><br>Side trip from Virginia Beach');
+        L.marker(locations.chicago, {icon: createIcon('#4a3f35')}).addTo(map)
+            .bindPopup('<b>Chicago</b><br>Edgewater Beach Hotel');
+        L.marker(locations.toronto, {icon: createIcon('#9caab5')}).addTo(map)
+            .bindPopup('<b>Toronto</b><br>1939 Canada trip');
+        L.marker(locations.quebec, {icon: createIcon('#9caab5')}).addTo(map)
+            .bindPopup('<b>Quebec City</b><br>1939 Canada trip');
+        L.marker(locations.stAnne, {icon: createIcon('#9caab5')}).addTo(map)
+            .bindPopup('<b>St. Anne de Beaupré</b><br>1939 Canada trip');
+        L.marker(locations.boston, {icon: createIcon('#9caab5')}).addTo(map)
+            .bindPopup('<b>Boston</b><br>Boat to New York');
+        L.marker(locations.worldsFair, {icon: createIcon('#9caab5')}).addTo(map)
+            .bindPopup('<b>1939 World\'s Fair</b><br>Flushing Meadows, Queens');
+
+        // Draw routes
+        // Annual Salem to Louisville route
+        L.polyline([locations.salem, locations.louisville], {
+            color: '#8b7355',
+            weight: 3,
+            opacity: 0.6,
+            dashArray: '10, 10'
+        }).addTo(map);
+
+        // Virginia Beach vacation route
+        L.polyline([
+            locations.salem,
+            locations.virginiaBeach,
+            locations.williamsburg,
+            locations.washington
+        ], {
+            color: '#a8554e',
+            weight: 3,
+            opacity: 0.6
+        }).addTo(map);
+
+        // 1939 Canada & World's Fair route
+        L.polyline([
+            locations.salem,
+            locations.toronto,
+            locations.quebec,
+            locations.stAnne,
+            locations.boston,
+            locations.worldsFair
+        ], {
+            color: '#9caab5',
+            weight: 3,
+            opacity: 0.6
+        }).addTo(map);
+
+        // Chicago route
+        L.polyline([locations.salem, locations.chicago], {
+            color: '#4a3f35',
+            weight: 3,
+            opacity: 0.6,
+            dashArray: '10, 10'
+        }).addTo(map);
+    </script>
 </body>
 </html>
