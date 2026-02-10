@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story One - Family Vacations</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Allura&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #f5f1e8;
+            --dark-cream: #e8dfc8;
+            --sepia: #8b7355;
+            --deep-brown: #4a3f35;
+            --faded-blue: #9caab5;
+            --soft-red: #a8554e;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #f5f1e8 0%, #ebe4d1 100%);
+            color: var(--deep-brown);
+            line-height: 1.8;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Paper texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(139, 115, 85, 0.02) 0px,
+                    rgba(139, 115, 85, 0.02) 1px,
+                    transparent 1px,
+                    transparent 2px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(139, 115, 85, 0.02) 0px,
+                    rgba(139, 115, 85, 0.02) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-link {
+            font-family: 'EB Garamond', serif;
+            color: var(--faded-blue);
+            text-decoration: none;
+            font-size: 1em;
+            margin-bottom: 40px;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--sepia);
+        }
+
+        .letter-container {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 60px 50px;
+            box-shadow: 
+                5px 5px 20px rgba(0,0,0,0.1),
+                inset 0 0 0 1px rgba(255,255,255,0.6);
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        /* Aged paper effect */
+        .letter-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at top left, rgba(139, 115, 85, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at top right, rgba(139, 115, 85, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom left, rgba(139, 115, 85, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(139, 115, 85, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .story-number {
+            font-family: 'Allura', cursive;
+            font-size: 2em;
+            color: var(--soft-red);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-family: 'EB Garamond', serif;
+            font-size: 2em;
+            color: var(--sepia);
+            margin-bottom: 35px;
+            font-weight: 600;
+            line-height: 1.3;
+            font-style: italic;
+        }
+
+        .letter-text {
+            font-size: 1.15em;
+            line-height: 1.9;
+            color: var(--deep-brown);
+            text-align: justify;
+        }
+
+        .letter-text p {
+            margin-bottom: 25px;
+        }
+
+        .letter-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .signature {
+            font-family: 'Allura', cursive;
+            font-size: 2.5em;
+            color: var(--sepia);
+            margin-top: 50px;
+            text-align: right;
+        }
+
+        .resources-section {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 45px 40px;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.08);
+            margin-top: 50px;
+        }
+
+        .resources-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.8em;
+            color: var(--sepia);
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .resource-category {
+            margin-bottom: 35px;
+        }
+
+        .resource-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.4em;
+            color: var(--deep-brown);
+            margin-bottom: 15px;
+            font-weight: 600;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(139, 115, 85, 0.2);
+        }
+
+        .resource-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .resource-item {
+            margin-bottom: 18px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .resource-item::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--soft-red);
+            font-size: 0.8em;
+        }
+
+        .resource-link {
+            color: var(--faded-blue);
+            text-decoration: none;
+            font-size: 1.05em;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        .resource-link:hover {
+            color: var(--sepia);
+            border-bottom: 1px solid var(--sepia);
+        }
+
+        .resource-description {
+            font-size: 0.95em;
+            color: var(--sepia);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .decorative-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--sepia), transparent);
+            margin: 40px 0;
+            opacity: 0.3;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .letter-container {
+                padding: 40px 30px;
+            }
+
+            .question {
+                font-size: 1.6em;
+            }
+
+            .letter-text {
+                font-size: 1.05em;
+                text-align: left;
+            }
+
+            .resources-section {
+                padding: 35px 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to all stories</a>
+
+        <div class="letter-container">
+            <div class="story-number">Story One</div>
+            <h1 class="question">What was one of your favorite family vacations as a child?</h1>
+
+            <div class="letter-text">
+                <p>I'm afraid you are about to have more information that you can possibly want, but my father (Pop) gave Mimi and me several wonderful trips and I'll have to give some thought to my answer. To begin with I should say that my parents, Louis and Dorothy or Pop and Dot as I will refer to them, loved to travel and every year in the summer we drove the day-long trip from Salem (my hometown) to Louisville (their hometown) where we stayed at Pop's family home which was on a long parkway which overlooked a golf course that bordered the Ohio River and on the other shore was Indiana farmland.</p>
+
+                <p>We had several great ones and I will list them in case you'd like to hear more. Of course, California in 1946 was the huge one and wonderful, but we had also been to Virginia Beach one summer with side trips to Williamsburg (just beginning restoration) and Washington. I spent three summers at camp in Wisconsin and Mimi had four more later and they made a big part of summer, but in 1939 we toured eastern Canada before heading south through New England to the World's Fair. Granny (Mother's mother) was along for that trip as an unofficial sitter and she added a lot of fun. We also, over the years, had several wonderful long stays at the Edgewater Beach Hotel on the Lake Michigan shore just north of Chicago. Does that tell you anything interesting? I loved all our trips; we had a lot of fun and it's been fun revisiting.</p>
+
+                <p>The nice thing about all our trips was how comfortable they were. My parents had two cars, a small two-door coupe Father drove to the factory he ran and "Dot's car" which by the time we took real trips was always a Cadillac sedan. Of course Mimi and I sat in the back and on the first day of one of our big trips Mother usually packed a fabulous picnic lunch which added to the fun. I remember on the trip to Virginia Beach we stopped in a woodsy place for our picnic and Mother left a jar of pickles we hadn't finished on a big rock. She meant it as a joke, but we no sooner got back on the road than she began to worry that some other travelers might find the remains of our picnic turned to poison because of heavy sunlight. That worry stayed with her for the day, but by the time we got to the Cavalier Hotel Mother had pretty much dismissed it and we all settled down to a lovely vacation at the beach with side trips to interesting spots in Virginia.</p>
+            </div>
+
+            <div class="signature">With love always...</div>
+        </div>
+
+        <div class="resources-section">
+            <h2 class="resources-title">Exploring Her Memories</h2>
+            <p style="text-align: center; color: var(--sepia); margin-bottom: 35px; font-style: italic;">
+                Historical context and places from her story
+            </p>
+
+            <div class="resource-category">
+                <h3 class="category-title">The 1939 New York World's Fair</h3>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <a href="https://en.wikipedia.org/wiki/1939_New_York_World's_Fair" target="_blank" class="resource-link">Wikipedia: 1939 New York World's Fair</a>
+                        <div class="resource-description">Comprehensive history of the "World of Tomorrow" - 45 million visitors came to see the Trylon and Perisphere</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.life.com/history/1939-new-york-worlds-fair-photos/" target="_blank" class="resource-link">LIFE Magazine: 1939 World's Fair in Photos</a>
+                        <div class="resource-description">Vintage photographs from Margaret Bourke-White and Alfred Eisenstaedt showing the fair's construction and exhibits</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.nycgovparks.org/highlights/fmcp-worlds-fairs/1939-photos" target="_blank" class="resource-link">NYC Parks: 1939 World's Fair Photos</a>
+                        <div class="resource-description">Historic images from Flushing Meadows Corona Park, including the iconic Perisphere and Trylon</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.archives.nyc/blog/2022/4/22/the-world-of-tomorrow-1939-new-york-worlds-fair" target="_blank" class="resource-link">NYC Municipal Archives: The World of Tomorrow</a>
+                        <div class="resource-description">Documentation from Mayor LaGuardia's papers and archival photographs of the fair</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="decorative-divider"></div>
+
+            <div class="resource-category">
+                <h3 class="category-title">Edgewater Beach Hotel, Chicago</h3>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <a href="https://en.wikipedia.org/wiki/Edgewater_Beach_Hotel" target="_blank" class="resource-link">Wikipedia: Edgewater Beach Hotel</a>
+                        <div class="resource-description">The "sunrise yellow" resort on Lake Michigan (1916-1971) that hosted celebrities and presidents</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.wttw.com/timemachine/edgewater-beach-hotel" target="_blank" class="resource-link">WTTW Chicago: Edgewater Beach Hotel History</a>
+                        <div class="resource-description">Photos and stories of the hotel's golden era from the 1920s-1940s, including famous guests like Babe Ruth and Marilyn Monroe</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="http://www.edgewaterhistory.org/ehs/local/edgewater-beach-hotel" target="_blank" class="resource-link">Edgewater Historical Society: Hotel Overview</a>
+                        <div class="resource-description">Detailed history and first-hand accounts from people who lived and worked at the hotel</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.preservationchicago.org/edgewater-beach-hotel-by-marshall-fox-built-1916-1923-demolished-1971/" target="_blank" class="resource-link">Preservation Chicago: Historic Photos & Architecture</a>
+                        <div class="resource-description">Archival images from the Art Institute showing the hotel's Spanish Baroque design by Marshall & Fox</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="decorative-divider"></div>
+
+            <div class="resource-category">
+                <h3 class="category-title">Colonial Williamsburg Restoration</h3>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <a href="https://www.colonialwilliamsburg.org/" target="_blank" class="resource-link">Colonial Williamsburg Official Site</a>
+                        <div class="resource-description">The living history museum as it exists today, showing what your grandmother saw "just beginning restoration" in the 1940s</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.colonialwilliamsburg.org/discover/moments-in-history/the-restoration/" target="_blank" class="resource-link">The Restoration of Williamsburg</a>
+                        <div class="resource-description">Timeline of the massive reconstruction project funded by John D. Rockefeller Jr. beginning in 1926</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://en.wikipedia.org/wiki/Colonial_Williamsburg" target="_blank" class="resource-link">Wikipedia: Colonial Williamsburg History</a>
+                        <div class="resource-description">Comprehensive overview of the restoration project and its historical significance</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="decorative-divider"></div>
+
+            <div class="resource-category">
+                <h3 class="category-title">The Cavalier Hotel, Virginia Beach</h3>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <a href="https://www.cavalierresortvb.com/the-historic-cavalier-hotel" target="_blank" class="resource-link">The Historic Cavalier Hotel Today</a>
+                        <div class="resource-description">The restored hotel featuring Jeffersonian architecture inspired by Monticello, opened 1927</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://en.wikipedia.org/wiki/Cavalier_Hotel" target="_blank" class="resource-link">Wikipedia: Cavalier Hotel</a>
+                        <div class="resource-description">History of Virginia's "Grand Dame of the Shore" - commandeered by the Navy during WWII, now on the National Register of Historic Places</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.virginia.org/blog/post/va-beach-cavalier-history/" target="_blank" class="resource-link">Virginia Tourism: The Cavalier's Opulent History</a>
+                        <div class="resource-description">Stories of the hotel's golden era and famous guests from the Roaring Twenties through the 1940s</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.atlasobscura.com/places/historic-cavalier-hotel" target="_blank" class="resource-link">Atlas Obscura: Historic Cavalier Hotel</a>
+                        <div class="resource-description">Fun facts including seawater baths, ice water taps, and the hotel's pioneering radio station WSEA</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="index.html" class="back-link">← Back to all stories</a>
+        </div>
+    </div>
+</body>
+</html>

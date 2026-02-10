@@ -1,0 +1,353 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grandmother's Stories</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #f5f1e8;
+            --dark-cream: #e8dfc8;
+            --sepia: #8b7355;
+            --deep-brown: #4a3f35;
+            --faded-blue: #9caab5;
+            --soft-red: #a8554e;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #f5f1e8 0%, #ebe4d1 100%);
+            color: var(--deep-brown);
+            line-height: 1.7;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Paper texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(139, 115, 85, 0.02) 0px,
+                    rgba(139, 115, 85, 0.02) 1px,
+                    transparent 1px,
+                    transparent 2px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(139, 115, 85, 0.02) 0px,
+                    rgba(139, 115, 85, 0.02) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            opacity: 0;
+            animation: fadeIn 1.5s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
+
+        h1 {
+            font-family: 'EB Garamond', serif;
+            font-size: 3.5em;
+            font-weight: 500;
+            color: var(--sepia);
+            margin-bottom: 20px;
+            letter-spacing: 0.03em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.05);
+        }
+
+        .subtitle {
+            font-size: 1.3em;
+            color: var(--faded-blue);
+            font-style: italic;
+            font-weight: 400;
+        }
+
+        .decorative-line {
+            width: 200px;
+            height: 2px;
+            background: linear-gradient(to right, transparent, var(--sepia), transparent);
+            margin: 40px auto;
+            opacity: 0.4;
+        }
+
+        .story-grid {
+            display: grid;
+            gap: 30px;
+            margin-top: 60px;
+        }
+
+        .story-card {
+            background: rgba(255, 255, 255, 0.6);
+            border: 2px solid rgba(139, 115, 85, 0.2);
+            padding: 35px;
+            position: relative;
+            transition: all 0.4s ease;
+            box-shadow: 
+                3px 3px 8px rgba(0,0,0,0.08),
+                inset 0 0 0 1px rgba(255,255,255,0.5);
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideUp 0.8s ease-out forwards;
+        }
+
+        .story-card:nth-child(1) { animation-delay: 0.2s; }
+        .story-card:nth-child(2) { animation-delay: 0.4s; }
+        .story-card:nth-child(3) { animation-delay: 0.6s; }
+        .story-card:nth-child(4) { animation-delay: 0.8s; }
+        .story-card:nth-child(5) { animation-delay: 1s; }
+        .story-card:nth-child(6) { animation-delay: 1.2s; }
+        .story-card:nth-child(7) { animation-delay: 1.4s; }
+        .story-card:nth-child(8) { animation-delay: 1.6s; }
+
+        @keyframes slideUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .story-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 
+                5px 5px 15px rgba(0,0,0,0.12),
+                inset 0 0 0 1px rgba(255,255,255,0.7);
+            border-color: rgba(139, 115, 85, 0.4);
+        }
+
+        /* Corner decorations */
+        .story-card::before,
+        .story-card::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border: 1px solid var(--sepia);
+            opacity: 0.3;
+        }
+
+        .story-card::before {
+            top: 10px;
+            left: 10px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .story-card::after {
+            bottom: 10px;
+            right: 10px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .story-number {
+            font-family: 'EB Garamond', serif;
+            font-size: 0.9em;
+            color: var(--soft-red);
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .story-question {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.8em;
+            color: var(--deep-brown);
+            margin-bottom: 18px;
+            line-height: 1.4;
+            font-weight: 500;
+        }
+
+        .story-preview {
+            font-size: 1.1em;
+            color: var(--sepia);
+            line-height: 1.8;
+            margin-bottom: 25px;
+            font-style: italic;
+        }
+
+        .read-more {
+            display: inline-block;
+            font-family: 'EB Garamond', serif;
+            font-size: 1em;
+            color: var(--faded-blue);
+            text-decoration: none;
+            padding: 12px 28px;
+            border: 1.5px solid var(--faded-blue);
+            transition: all 0.3s ease;
+            letter-spacing: 0.05em;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .read-more::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--faded-blue);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .read-more:hover {
+            color: white;
+        }
+
+        .read-more:hover::before {
+            left: 0;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 100px;
+            padding: 40px 0;
+            color: var(--sepia);
+            font-size: 0.95em;
+            font-style: italic;
+            border-top: 1px solid rgba(139, 115, 85, 0.2);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5em;
+            }
+
+            .story-question {
+                font-size: 1.5em;
+            }
+
+            .container {
+                padding: 40px 20px;
+            }
+
+            .story-card {
+                padding: 25px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Letters from Grandmother</h1>
+            <div class="decorative-line"></div>
+            <p class="subtitle">Stories and memories preserved with love</p>
+        </header>
+
+        <div class="story-grid">
+            <div class="story-card">
+                <div class="story-number">Story One</div>
+                <h2 class="story-question">What was one of your favorite family vacations as a child?</h2>
+                <p class="story-preview">
+                    "I'm afraid you are about to have more information than you can possibly want, but my father gave Mimi and me several wonderful trips..."
+                </p>
+                <a href="story-1.html" class="read-more">Read Her Letter →</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-number">Story Two</div>
+                <h2 class="story-question">How did you get your first job, and what was it?</h2>
+                <p class="story-preview">
+                    "I graduated from Northwestern in early summer 1952 and as a wonderful graduation gift received a six-week trip to Europe..."
+                </p>
+                <a href="story-2.html" class="read-more">Read Her Letter →</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-number">Story Three</div>
+                <h2 class="story-question">What were your favorite subjects in college?</h2>
+                <p class="story-preview">
+                    "By now you realize that I never really liked going to school from kindergarten right through graduate school, but although I wasn't Phi Beta Kappa..."
+                </p>
+                <a href="story-3.html" class="read-more">Read Her Letter →</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-number">Story Four</div>
+                <h2 class="story-question">How far back can you trace your family ancestry?</h2>
+                <p class="story-preview">
+                    "The quick answer is the mid-19th century when Father's German family and Mother's Irish family arrived in America..."
+                </p>
+                <a href="story-4.html" class="read-more">Read Her Letter →</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-number">Story Five</div>
+                <h2 class="story-question">What is your favorite museum—and why?</h2>
+                <p class="story-preview">
+                    "You've got it right when you think there's more than one because I am a museum lover and I can't think of many museums I don't like..."
+                </p>
+                <a href="story-5.html" class="read-more">Read Her Letter →</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-number">Story Six</div>
+                <h2 class="story-question">What is your favorite painting—and why?</h2>
+                <p class="story-preview">
+                    "Picking just one is going to be a challenge. I've been thinking and thinking and my choice has turned out to be Rembrandt's Polish Rider at the Frick..."
+                </p>
+                <a href="story-6.html" class="read-more">Read Her Letter →</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-number">Story Seven</div>
+                <h2 class="story-question">Can you tell me the story of how you met Grandfather?</h2>
+                <p class="story-preview">
+                    "I expect you know I grew up in Salem, a small town in northeastern Ohio. My parents were good friends with Fritz and Esther Mullins..."
+                </p>
+                <a href="story-7.html" class="read-more">Read Her Letter →</a>
+            </div>
+
+            <div class="story-card">
+                <div class="story-number">Story Eight</div>
+                <h2 class="story-question">Can you tell me about your first trip to Europe?</h2>
+                <p class="story-preview">
+                    "My first trip to Europe in 1952 was a fabulous experience and it's going to be hard to reduce it to a paragraph or two..."
+                </p>
+                <a href="story-8.html" class="read-more">Read Her Letter →</a>
+            </div>
+        </div>
+
+        <footer>
+            With love and remembrance<br>
+            A collection of stories to preserve her memory
+        </footer>
+    </div>
+</body>
+</html>
