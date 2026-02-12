@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Story Two - First Job</title>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Allura&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --cream: #f5f1e8;
+            --dark-cream: #e8dfc8;
+            --sepia: #8b7355;
+            --deep-brown: #4a3f35;
+            --faded-blue: #9caab5;
+            --soft-red: #a8554e;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, #f5f1e8 0%, #ebe4d1 100%);
+            color: var(--deep-brown);
+            line-height: 1.8;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Paper texture overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                repeating-linear-gradient(
+                    0deg,
+                    rgba(139, 115, 85, 0.02) 0px,
+                    rgba(139, 115, 85, 0.02) 1px,
+                    transparent 1px,
+                    transparent 2px
+                ),
+                repeating-linear-gradient(
+                    90deg,
+                    rgba(139, 115, 85, 0.02) 0px,
+                    rgba(139, 115, 85, 0.02) 1px,
+                    transparent 1px,
+                    transparent 2px
+                );
+            opacity: 0.3;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            padding: 60px 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .back-link {
+            font-family: 'EB Garamond', serif;
+            color: var(--faded-blue);
+            text-decoration: none;
+            font-size: 1em;
+            margin-bottom: 40px;
+            display: inline-block;
+            transition: color 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: var(--sepia);
+        }
+
+        .letter-container {
+            background: rgba(255, 255, 255, 0.7);
+            padding: 60px 50px;
+            box-shadow: 
+                5px 5px 20px rgba(0,0,0,0.1),
+                inset 0 0 0 1px rgba(255,255,255,0.6);
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        /* Aged paper effect */
+        .letter-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                radial-gradient(ellipse at top left, rgba(139, 115, 85, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at top right, rgba(139, 115, 85, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom left, rgba(139, 115, 85, 0.05) 0%, transparent 50%),
+                radial-gradient(ellipse at bottom right, rgba(139, 115, 85, 0.05) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .story-number {
+            font-family: 'Allura', cursive;
+            font-size: 2em;
+            color: var(--soft-red);
+            margin-bottom: 20px;
+        }
+
+        .question {
+            font-family: 'EB Garamond', serif;
+            font-size: 2em;
+            color: var(--sepia);
+            margin-bottom: 35px;
+            font-weight: 600;
+            line-height: 1.3;
+            font-style: italic;
+        }
+
+        .letter-text {
+            font-size: 1.15em;
+            line-height: 1.9;
+            color: var(--deep-brown);
+            text-align: justify;
+        }
+
+        .letter-text p {
+            margin-bottom: 25px;
+        }
+
+        .letter-text p:last-child {
+            margin-bottom: 0;
+        }
+
+        .signature {
+            font-family: 'Allura', cursive;
+            font-size: 2.5em;
+            color: var(--sepia);
+            margin-top: 50px;
+            text-align: right;
+        }
+
+        .resources-section {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 45px 40px;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.08);
+            margin-top: 50px;
+        }
+
+        .resources-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.8em;
+            color: var(--sepia);
+            margin-bottom: 30px;
+            text-align: center;
+            font-weight: 600;
+        }
+
+        .resource-category {
+            margin-bottom: 35px;
+        }
+
+        .resource-category:last-child {
+            margin-bottom: 0;
+        }
+
+        .category-title {
+            font-family: 'EB Garamond', serif;
+            font-size: 1.4em;
+            color: var(--deep-brown);
+            margin-bottom: 15px;
+            font-weight: 600;
+            padding-bottom: 8px;
+            border-bottom: 2px solid rgba(139, 115, 85, 0.2);
+        }
+
+        .fact-box {
+            background: rgba(232, 223, 200, 0.4);
+            padding: 20px 25px;
+            border-left: 4px solid var(--soft-red);
+            margin-bottom: 20px;
+            font-size: 1.05em;
+            line-height: 1.8;
+            color: var(--deep-brown);
+            font-style: italic;
+        }
+
+        .resource-list {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .resource-item {
+            margin-bottom: 18px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .resource-item::before {
+            content: '◆';
+            position: absolute;
+            left: 0;
+            color: var(--soft-red);
+            font-size: 0.8em;
+        }
+
+        .resource-link {
+            color: var(--faded-blue);
+            text-decoration: none;
+            font-size: 1.05em;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        .resource-link:hover {
+            color: var(--sepia);
+            border-bottom: 1px solid var(--sepia);
+        }
+
+        .resource-description {
+            font-size: 0.95em;
+            color: var(--sepia);
+            margin-top: 5px;
+            font-style: italic;
+        }
+
+        .decorative-divider {
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(to right, transparent, var(--sepia), transparent);
+            margin: 40px 0;
+            opacity: 0.3;
+        }
+
+        /* Photo Gallery */
+        .photo-gallery {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 45px 40px;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.08);
+            margin-bottom: 50px;
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+            margin-top: 25px;
+        }
+
+        .gallery-item {
+            position: relative;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: auto;
+            border: 3px solid rgba(139, 115, 85, 0.3);
+            box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery-item img:hover {
+            transform: scale(1.02);
+            box-shadow: 4px 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .photo-caption {
+            font-size: 0.9em;
+            color: var(--sepia);
+            margin-top: 12px;
+            text-align: center;
+            line-height: 1.5;
+        }
+
+        .photo-credit {
+            font-size: 0.85em;
+            color: var(--faded-blue);
+            font-style: italic;
+        }
+
+        /* Map Section */
+        .map-section {
+            background: rgba(255, 255, 255, 0.5);
+            padding: 45px 40px;
+            border: 1px solid rgba(139, 115, 85, 0.2);
+            box-shadow: 3px 3px 10px rgba(0,0,0,0.08);
+            margin-bottom: 50px;
+        }
+
+        #commute-map {
+            width: 100%;
+            height: 400px;
+            border: 2px solid rgba(139, 115, 85, 0.3);
+            margin-top: 20px;
+            box-shadow: inset 0 0 10px rgba(0,0,0,0.05);
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 40px 20px;
+            }
+
+            .letter-container {
+                padding: 40px 30px;
+            }
+
+            .question {
+                font-size: 1.6em;
+            }
+
+            .letter-text {
+                font-size: 1.05em;
+                text-align: left;
+            }
+
+            .resources-section {
+                padding: 35px 25px;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+
+            #commute-map {
+                height: 350px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <a href="index.html" class="back-link">← Back to all stories</a>
+
+        <div class="letter-container">
+            <div class="story-number">Story Two</div>
+            <h1 class="question">How did you get your first job, and what was it?</h1>
+
+            <div class="letter-text">
+                <p>I graduated from Northwestern in early summer 1952 and as a wonderful graduation gift received a six-week trip to Europe with one of my sorority sisters. We went from Scotland to Italy and had a fabulous time, but on our return I settled down at the Barbizon Hotel for Women in New York and started looking for work. Just this year a book about the Barbizon was published and I mean to read it because I had a very pleasant time there for about a year and a half in a big corner room with cross ventilation and plenty of closet space.</p>
+
+                <p>Being an English major I tried publishing houses for my first job and got offers from McGraw-Hill and Prentice-Hall. McGraw-Hill offered me a job in mail delivery, but P-H paired me with a very nice man named Jim Leisy as his assistant. For the life of me I can't remember what Jim was in charge of — sports and something else active — but my big recollection is that I delivered a lot of mail at P-H, too. The office was on the southern end of Fifth Avenue and every morning I walked three blocks over from the Barbizon and caught a bus down Fifth almost to the end.</p>
+
+                <p>The work was easy and Jim was a peach. If we got anything actually published while I worked for him I don't have a copy and probably never did, but I had a very pleasant time with Saturday afternoons at the Met and an occasional theater or opera performance to enjoy. My social life was pretty limited and I didn't meet Pete till I moved back to Salem and Sis Mullins thought we'd be a great pair, but I loved New York and still do. It wasn't until I got into hospital work many years later that I discovered what work really meant.</p>
+            </div>
+
+            <div class="signature">With love always...</div>
+        </div>
+
+        <!-- Vintage Photos Section -->
+        <div class="photo-gallery">
+            <h2 class="resources-title">The Barbizon Nancy Called Home</h2>
+            <p style="text-align: center; color: var(--sepia); margin-bottom: 35px; font-style: italic;">
+                Vintage photographs of the legendary hotel for women
+            </p>
+            
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="barbizon-postcard.jpg" alt="Vintage Barbizon Hotel postcard showing typical bed room, lobby, swimming pool, and main dining room">
+                    <p class="photo-caption">Vintage postcard of the Barbizon Hotel: typical bed room, lobby, swimming pool, and main dining room<br>
+                    <span class="photo-credit">Lexington Ave. at 63rd St. New York</span></p>
+                </div>
+                <div class="gallery-item">
+                    <img src="barbizon-exterior.png" alt="Exterior view of the Barbizon Hotel building">
+                    <p class="photo-caption">The 23-story Barbizon Hotel towering over the Upper East Side<br>
+                    <span class="photo-credit">Historic photograph</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Daily Commute Map -->
+        <div class="map-section">
+            <h2 class="resources-title">Her Daily Commute & Career Choices</h2>
+            <p style="text-align: center; color: var(--sepia); margin-bottom: 15px; font-style: italic;">
+                "Every morning I walked three blocks over from the Barbizon and caught a bus down Fifth almost to the end"
+            </p>
+            <p style="text-align: center; color: var(--deep-brown); margin-bottom: 20px; font-size: 0.95em;">
+                Her daily commute took her through the heart of Midtown, passing the sleek new Lever House on Park Avenue (completed in 1952). The map also shows McGraw-Hill—the publishing house that offered her a job in mail delivery, the road not taken.
+            </p>
+            <div id="commute-map">
+                <div style="display: flex; align-items: center; justify-content: center; height: 100%; background: rgba(232, 223, 200, 0.3); color: var(--sepia); font-style: italic; padding: 20px; text-align: center;">
+                    Loading interactive map...<br>
+                    <span style="font-size: 0.85em; margin-top: 10px; display: block;">If the map doesn't appear, it will display when you open this file in a browser or view it on GitHub Pages</span>
+                </div>
+            </div>
+            <p style="text-align: center; color: var(--sepia); margin-top: 15px; font-size: 0.9em; font-style: italic;">
+                Click markers to see: The Barbizon (home), Bus Stop on Fifth Ave, Prentice-Hall (her chosen job), and McGraw-Hill (the offer she declined)
+            </p>
+            
+            <div style="margin-top: 30px;">
+                <h4 style="font-family: 'EB Garamond', serif; font-size: 1.3em; color: var(--sepia); margin-bottom: 15px; text-align: center;">Vintage Street Scenes & Archival Footage</h4>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <a href="https://www.youtube.com/watch?v=gKLkCW5wjeQ" target="_blank" class="resource-link">Archival Film: New York City 1952</a>
+                        <div class="resource-description">This 1952 film shows the exact street life and energy of the year Nancy arrived</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.youtube.com/watch?v=qpq0m-bXJbU" target="_blank" class="resource-link">British Pathé: 1950s New York Skyline</a>
+                        <div class="resource-description">Majestic footage captures the skyscrapers Nancy would have seen every day</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="resources-section">
+            <h2 class="resources-title">Exploring Her Memories</h2>
+            <p style="text-align: center; color: var(--sepia); margin-bottom: 35px; font-style: italic;">
+                Historical context and places from Nancy's career-girl story
+            </p>
+
+            <div class="resource-category">
+                <h3 class="category-title">The Barbizon Hotel for Women</h3>
+                <div class="fact-box">
+                    The Barbizon opened in 1927 at Lexington Avenue and 63rd Street as a residence specifically for young women with artistic aspirations. The 23-story building featured 700 tiny rooms (college dorm-sized) with shared bathrooms, but offered amenities unheard of for women: a swimming pool, library, art studios with soaring ceilings, soundproofed music practice rooms, and a rooftop solarium. No men were allowed beyond the lobby, which gave the hotel a reputation for respectability. Famous residents included Grace Kelly, Sylvia Plath, Joan Didion, Ali MacGraw, and Liza Minnelli. The prestigious Katharine Gibbs Secretarial School occupied three floors, and Mademoiselle magazine housed its summer guest editors there.
+                </div>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <a href="https://history.howstuffworks.com/american-history/barbizon-hotel.htm" target="_blank" class="resource-link">HowStuffWorks: Why Every Woman Wanted to Stay at the Barbizon</a>
+                        <div class="resource-description">The hotel's strict admission requirements and grading system that gave preference to younger, prettier women</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.townandcountrymag.com/society/money-and-power/a35620210/grace-kelly-barbizon-hotel-history-book-excerpt/" target="_blank" class="resource-link">Town & Country: Untold History of the Barbizon (Book Excerpt)</a>
+                        <div class="resource-description">Stories from Paulina Bren's book "The Barbizon: The Hotel That Set Women Free" - the book Nancy mentioned reading!</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.nyhistory.org/blogs/the-barbizon-and-the-career-girl" target="_blank" class="resource-link">New-York Historical Society: The Barbizon and the Career Girl</a>
+                        <div class="resource-description">How the hotel fit into the changing social landscape for women in the 20th century</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://citylore.org/places/barbizon-hotel/" target="_blank" class="resource-link">City Lore: Barbizon Hotel Cultural History</a>
+                        <div class="resource-description">How the women's residence hotel freed women from domestic duties and enabled independence</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.cbc.ca/radio/day6/astrazeneca-s-vaccine-mishaps-the-mighty-ducks-nhl-history-ryan-mcmahon-the-barbizon-hotel-and-more-1.5964106/new-york-s-female-only-hotel-the-barbizon-gave-women-freedom-to-dream-and-work-1.5964110" target="_blank" class="resource-link">CBC Radio: The Barbizon Gave Women Freedom to Dream and Work</a>
+                        <div class="resource-description">Interview with author Paulina Bren about the hotel's role in women's liberation</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="decorative-divider"></div>
+
+            <div class="resource-category">
+                <h3 class="category-title">Prentice-Hall Publishing & Jim Leisy</h3>
+                <div class="fact-box">
+                    Founded in 1913 by NYU law professor Charles Gerstenberg and his student Richard Ettinger, Prentice-Hall became a major American educational publisher. The company relocated to 70 Fifth Avenue in 1917 to accommodate expanding operations. After World War II, Prentice-Hall capitalized on the GI Bill enrollment surge, expanding rapidly into textbooks for science, engineering, and mathematics. Nancy worked as an assistant to Jim Leisy, whom she remembers as "a very nice man" and "a peach." Leisy went on to found Wadsworth Publishing Company in 1956, which became a major textbook publisher after the 1957 Sputnik launch created new American focus on education. He later became deputy chairman of the International Thomson Organization and received the Association of American Publishers' first Higher Education Achievement Award in 1988.
+                </div>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <a href="https://grokipedia.com/page/Prentice_Hall" target="_blank" class="resource-link">Prentice Hall History and Timeline</a>
+                        <div class="resource-description">From its 1913 founding through the postwar boom when Nancy worked there</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.latimes.com/archives/la-xpm-1989-07-15-mn-2862-story.html" target="_blank" class="resource-link">Los Angeles Times: James F. Leisy Obituary (1989)</a>
+                        <div class="resource-description">Nancy's boss at Prentice-Hall went on to become one of America's leading textbook publishers</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="decorative-divider"></div>
+
+            <div class="resource-category">
+                <h3 class="category-title">Women in 1950s Publishing</h3>
+                <div class="fact-box">
+                    In the 1950s, publishing was still considered a "gentleman's profession" dominated by elite male networks and informal business practices. Yet college-educated women increasingly entered the field, often starting as secretaries or assistants with limited advancement opportunities. By this era, more women were working than at the peak of World War II, though largely confined to clerical roles. The "career girl" phenomenon emerged—young women moving to New York to pursue professional dreams in publishing, magazines, and media. Career-focused magazines like Mademoiselle championed these ambitious women while they navigated a world torn between encouraging female independence and promoting traditional domestic roles.
+                </div>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <a href="https://press.princeton.edu/ideas/women-in-the-gentlemans-career-of-publishing" target="_blank" class="resource-link">Princeton University Press: Women in the Gentleman's Career of Publishing</a>
+                        <div class="resource-description">How women infiltrated the male-dominated publishing world throughout the 20th century</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.smithsonianmag.com/arts-culture/first-magazines-written-for-career-women-reveal-portrait-immense-creativity-hope-180987174/" target="_blank" class="resource-link">Smithsonian: The First Magazines Written for Career Women</a>
+                        <div class="resource-description">The remarkable history of Mademoiselle and the "career girl" movement of the 1930s-1950s</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://text-message.blogs.archives.gov/2018/03/27/women-at-work-in-the-1950s/" target="_blank" class="resource-link">National Archives: Women at Work in the 1950s</a>
+                        <div class="resource-description">Photographs and documentation of professional women's expanding career paths</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="decorative-divider"></div>
+
+            <div class="resource-category">
+                <h3 class="category-title">Northwestern University Class of 1952</h3>
+                <div class="fact-box">
+                    Nancy graduated from Northwestern in "early summer 1952" with honors, having completed a special BA program in history and English literature (rather than the standard BS offered by the Liberal Arts College). The Class of 1952 commencement speaker was James Lewis Morrill. Her name appears on page 7 of the commencement program, and her honors are noted on page 65. This was an era when Northwestern women graduates increasingly pursued careers, though many faced the question: "What are you going to do with a degree in English?" Publishing became a popular answer, with many Vassar and Northwestern English majors entering the field as assistants and secretaries.
+                </div>
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <a href="https://ia600609.us.archive.org/2/items/annualcommenceme1952nort/annualcommenceme1952nort.pdf" target="_blank" class="resource-link">Northwestern 1952 Commencement Program (PDF)</a>
+                        <div class="resource-description">Nancy's name appears on page 7; her honors are noted on page 65</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.northwestern.edu/hidden-no-more/graduate-students/early-mid-century.html" target="_blank" class="resource-link">Northwestern: Early and Mid-Century Women Graduates</a>
+                        <div class="resource-description">Stories of pioneering women who earned degrees from Northwestern in the 1940s-1950s</div>
+                    </li>
+                </ul>
+            </div>
+
+            <div class="decorative-divider"></div>
+
+            <div class="resource-category">
+                <h3 class="category-title">1950s New York: A Young Woman's City</h3>
+                <div class="fact-box">
+                    Nancy's New York in the early 1950s was a city of possibility for career-minded young women. She spent Saturday afternoons at the Metropolitan Museum of Art and occasionally attended theater or opera. This was the golden age of New York cultural life—Broadway was thriving, the Met offered standing-room tickets to young people, and Fifth Avenue was lined with elegant shops and publishing houses.
+                </div>
+                
+                <h4 style="font-family: 'EB Garamond', serif; font-size: 1.2em; color: var(--deep-brown); margin: 25px 0 15px 0; font-weight: 600;">The Skyline Was Changing</h4>
+                <ul class="resource-list">
+                    <li class="resource-item">The <strong>UN Headquarters Secretariat Building</strong> was completed in 1952, bringing a futuristic "glass curtain" look to the East Side <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(UN History)</span></li>
+                    <li class="resource-item"><strong>Lever House</strong>, the iconic green-glass skyscraper on Park Avenue, also opened in 1952—one of the first "glass box" skyscrapers <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(NYC Landmarks Preservation Commission)</span></li>
+                    <li class="resource-item">The <strong>Empire State Building</strong> remained the undisputed king of the skyline, photographed extensively by Angelo Rizzuto and others <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(1952 Photography Archives)</span></li>
+                </ul>
+                
+                <h4 style="font-family: 'EB Garamond', serif; font-size: 1.2em; color: var(--deep-brown); margin: 25px 0 15px 0; font-weight: 600;">A Golden Era for Sports</h4>
+                <ul class="resource-list">
+                    <li class="resource-item">The <strong>1952 World Series</strong>: New York Yankees defeated the Brooklyn Dodgers in a thrilling 7-game Subway Series <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(Baseball Reference)</span></li>
+                    <li class="resource-item"><strong>Mickey Mantle</strong> completed his first full season as a Yankees starter, taking over center field from Joe DiMaggio <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(Yankees History)</span></li>
+                </ul>
+                
+                <h4 style="font-family: 'EB Garamond', serif; font-size: 1.2em; color: var(--deep-brown); margin: 25px 0 15px 0; font-weight: 600;">Daily Life in '52</h4>
+                <ul class="resource-list">
+                    <li class="resource-item">Subway fare: <strong>10 cents</strong> (didn't rise to 15¢ until 1953) <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(MTA Historical Fares)</span></li>
+                    <li class="resource-item">Gasoline: about <strong>20 cents per gallon</strong> <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(U.S. Energy Information Administration)</span></li>
+                    <li class="resource-item">Coffee and a donut at an <strong>Automat</strong>: pocket change <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(Horn & Hardart History)</span></li>
+                    <li class="resource-item">The <strong>Supervue Guide</strong> was the popular manual for new residents, touting NYC's "postwar glory" <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(NYC Tourism Archives)</span></li>
+                    <li class="resource-item"><strong>July 1952 heatwave</strong>: one of the hottest months in the city's history at the time <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(National Weather Service Records)</span></li>
+                </ul>
+                
+                <h4 style="font-family: 'EB Garamond', serif; font-size: 1.2em; color: var(--deep-brown); margin: 25px 0 15px 0; font-weight: 600;">Broadway in 1952</h4>
+                <div class="fact-box">
+                    Nancy arrived during what many consider a Golden Age for the stage. The 1952 Tony Awards celebrated some of the most enduring classics in theater history.
+                </div>
+                <ul class="resource-list">
+                    <li class="resource-item"><strong>The King and I</strong>: This Rodgers and Hammerstein masterpiece won the Tony Award for Best Musical <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(Tony Awards Archive)</span></li>
+                    <li class="resource-item"><strong>Guys and Dolls</strong>: Although it premiered in 1950, it was still a massive hit on Broadway in 1952 <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(Internet Broadway Database)</span></li>
+                    <li class="resource-item"><strong>New Faces of 1952</strong>: This musical revue launched the careers of Eartha Kitt and writer Mel Brooks <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(Broadway History)</span></li>
+                    <li class="resource-item"><strong>Dial "M" for Murder</strong>: This classic thriller opened in October 1952 and became an immediate sensation <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(Playbill Archives)</span></li>
+                    <li class="resource-item"><strong>The Seven Year Itch</strong>: This iconic play premiered in November 1952, famously set in New York City <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(Theatre History)</span></li>
+                </ul>
+                
+                <h4 style="font-family: 'EB Garamond', serif; font-size: 1.2em; color: var(--deep-brown); margin: 25px 0 15px 0; font-weight: 600;">Popular Songs of 1952</h4>
+                <div class="fact-box">
+                    The radio that year was a mix of lush orchestral pop, soulful "crooners," and early R&B. <span style="font-size: 0.85em; color: var(--faded-blue); font-style: italic;">(Billboard Year-End Charts 1952)</span>
+                </div>
+                <table style="width: 100%; border-collapse: collapse; margin-top: 15px; font-family: 'Crimson Text', serif;">
+                    <thead>
+                        <tr style="background: rgba(139, 115, 85, 0.15); border-bottom: 2px solid var(--sepia);">
+                            <th style="padding: 12px; text-align: left; font-weight: 600; color: var(--deep-brown);">Rank</th>
+                            <th style="padding: 12px; text-align: left; font-weight: 600; color: var(--deep-brown);">Song Title</th>
+                            <th style="padding: 12px; text-align: left; font-weight: 600; color: var(--deep-brown);">Artist(s)</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="border-bottom: 1px solid rgba(139, 115, 85, 0.1);">
+                            <td style="padding: 10px; color: var(--sepia);">#1</td>
+                            <td style="padding: 10px;">"Blue Tango"</td>
+                            <td style="padding: 10px; color: var(--sepia);">Leroy Anderson</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(139, 115, 85, 0.1);">
+                            <td style="padding: 10px; color: var(--sepia);">#2</td>
+                            <td style="padding: 10px;">"Wheel of Fortune"</td>
+                            <td style="padding: 10px; color: var(--sepia);">Kay Starr</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(139, 115, 85, 0.1);">
+                            <td style="padding: 10px; color: var(--sepia);">#3</td>
+                            <td style="padding: 10px;">"Cry"</td>
+                            <td style="padding: 10px; color: var(--sepia);">Johnnie Ray & The Four Lads</td>
+                        </tr>
+                        <tr style="border-bottom: 1px solid rgba(139, 115, 85, 0.1);">
+                            <td style="padding: 10px; color: var(--sepia);">#4</td>
+                            <td style="padding: 10px;">"You Belong to Me"</td>
+                            <td style="padding: 10px; color: var(--sepia);">Jo Stafford</td>
+                        </tr>
+                        <tr>
+                            <td style="padding: 10px; color: var(--sepia);">#5</td>
+                            <td style="padding: 10px;">"Auf Wiederseh'n, Sweetheart"</td>
+                            <td style="padding: 10px; color: var(--sepia);">Vera Lynn</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <ul class="resource-list">
+                    <li class="resource-item">
+                        <a href="https://blog.oup.com/2017/10/women-work-new-york-city-turn-20th-century/" target="_blank" class="resource-link">Oxford University Press: Women at Work in New York City</a>
+                        <div class="resource-description">How NYC's flourishing culture industries opened opportunities for women workers</div>
+                    </li>
+                    <li class="resource-item">
+                        <a href="https://www.untappedcities.com/women-only-hotels-nyc/" target="_blank" class="resource-link">Untapped New York: The Hidden History of NYC's Women-Only Hotels</a>
+                        <div class="resource-description">The fifty-year heyday of women's hotels as symbols of independence and professional opportunity</div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 50px;">
+            <a href="index.html" class="back-link">← Back to all stories</a>
+        </div>
+    </div>
+    <!-- Leaflet.js for the map -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    
+    <script>
+        // Wait for DOM to be fully loaded before initializing map
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize the commute map
+            const commuteMap = L.map('commute-map').setView([40.7614, -73.9776], 14);
+            
+            // Add tile layer with vintage style
+            L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+                attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+                maxZoom: 19
+            }).addTo(commuteMap);
+
+            // Define locations
+            const barbizon = [40.7646, -73.9658]; // Lexington Ave & 63rd St
+            const fifthAve63rd = [40.7640, -73.9722]; // Where she caught the bus (3 blocks west)
+            const prenticeHall = [40.7359, -73.9911]; // Southern end of Fifth Ave (around Washington Square)
+            const mcgrawHill = [40.7556, -73.9810]; // McGraw-Hill Building, 330 West 42nd Street (moved there in 1931)
+
+            // Custom marker icons
+            const createIcon = (color, label) => L.divIcon({
+                className: 'custom-marker',
+                html: `<div style="background-color: ${color}; width: 14px; height: 14px; border-radius: 50%; border: 3px solid white; box-shadow: 0 0 6px rgba(0,0,0,0.4);"></div>`,
+                iconSize: [14, 14],
+                iconAnchor: [7, 7]
+            });
+
+            // Add markers
+            L.marker(barbizon, {icon: createIcon('#a8554e')}).addTo(commuteMap)
+                .bindPopup('<b>The Barbizon Hotel for Women</b><br>Lexington Ave & 63rd Street<br>"A big corner room with cross ventilation"');
+            
+            L.marker(fifthAve63rd, {icon: createIcon('#9caab5')}).addTo(commuteMap)
+                .bindPopup('<b>Bus Stop on Fifth Avenue</b><br>"Walked three blocks over"');
+            
+            L.marker(prenticeHall, {icon: createIcon('#8b7355')}).addTo(commuteMap)
+                .bindPopup('<b>Prentice-Hall Publishing</b><br>70 Fifth Avenue (southern end)<br>"Caught a bus down Fifth almost to the end"<br><strong>She chose this job!</strong>');
+            
+            L.marker(mcgrawHill, {icon: createIcon('#d4a574')}).addTo(commuteMap)
+                .bindPopup('<b>McGraw-Hill Publishing</b><br>330 West 42nd Street<br>"Offered me a job in mail delivery"<br><em>The road not taken</em>');
+
+            // Draw the walking route (Barbizon to bus stop)
+            L.polyline([barbizon, fifthAve63rd], {
+                color: '#a8554e',
+                weight: 4,
+                opacity: 0.7,
+                dashArray: '5, 10'
+            }).addTo(commuteMap);
+
+            // Draw the bus route (down Fifth Avenue)
+            L.polyline([fifthAve63rd, prenticeHall], {
+                color: '#8b7355',
+                weight: 4,
+                opacity: 0.7
+            }).addTo(commuteMap);
+
+            // Add labels for key streets
+            L.marker([40.7640, -73.9658], {
+                icon: L.divIcon({
+                    className: 'street-label',
+                    html: '<div style="font-family: EB Garamond; font-size: 11px; color: #4a3f35; font-style: italic; background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 3px; white-space: nowrap;">Lexington Ave</div>',
+                    iconSize: [100, 20],
+                    iconAnchor: [50, 10]
+                })
+            }).addTo(commuteMap);
+
+            L.marker([40.7540, -73.9750], {
+                icon: L.divIcon({
+                    className: 'street-label',
+                    html: '<div style="font-family: EB Garamond; font-size: 11px; color: #4a3f35; font-style: italic; background: rgba(255,255,255,0.8); padding: 2px 6px; border-radius: 3px; white-space: nowrap;">Fifth Avenue</div>',
+                    iconSize: [100, 20],
+                    iconAnchor: [50, 10]
+                })
+            }).addTo(commuteMap);
+        });
+    </script>
+</body>
+</html>
